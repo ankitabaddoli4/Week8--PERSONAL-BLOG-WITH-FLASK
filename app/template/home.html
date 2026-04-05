@@ -1,1 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Personal Blog</title>
 
+    <style>
+        body {
+            font-family: "Times New Roman";
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 85%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+        }
+
+        input {
+            padding: 5px;
+        }
+
+        button {
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>🌟 PERSONAL BLOG - HOME PAGE</h2>
+
+    <p>
+        👋 Welcome, John Doe <br>
+        Logout | New Post | Profile
+    </p>
+
+    <!-- SEARCH -->
+    <p>🔍 SEARCH POSTS:</p>
+    <form method="GET">
+        <input type="text" name="search" placeholder="Search...">
+    </form>
+
+    <!-- POSTS -->
+    <p>📝 RECENT BLOG POSTS:</p>
+
+    {% for post in posts %}
+
+        <p><b>🎯 {{ post.title }}</b></p>
+
+        <p>
+            Published: {{ post.date }} |
+            Author: {{ post.author }} |
+            Category: {{ post.category }}
+        </p>
+
+        <p>{{ post.content }}</p>
+
+        <p>
+            📊 Stats: Views: {{ post.views }} |
+            Comments: {{ post.comments }} |
+            Likes: {{ post.likes }}
+        </p>
+
+        <p><b>💬 COMMENTS:</b></p>
+
+        {% for c in post.comments_list %}
+            <p>
+                {{ loop.index }}. {{ c.name }} ({{ c.date }}):<br>
+                "{{ c.text }}"
+            </p>
+        {% endfor %}
+
+    {% endfor %}
+
+    <!-- STATS -->
+    <p><b>📋 BLOG STATISTICS:</b></p>
+    <p>Total Posts: {{ stats.total_posts }}</p>
+    <p>Total Comments: {{ stats.total_comments }}</p>
+    <p>Categories: {{ stats.categories }}</p>
+    <p>Most Popular Post: {{ stats.popular_post }}</p>
+
+    <!-- USERS -->
+    <p><b>👥 ACTIVE USERS:</b></p>
+    {% for user in users %}
+        <p>{{ user.name }} ({{ user.posts }} posts)</p>
+    {% endfor %}
+
+    <!-- SUBSCRIBE -->
+    <p><b>📬 SUBSCRIBE TO NEWSLETTER:</b></p>
+    <form method="POST">
+        <input type="email" name="email" placeholder="Enter email">
+        <button type="submit">Subscribe</button>
+    </form>
+
+    <p>
+        © 2026 My Personal Blog | About | Contact | Privacy Policy
+    </p>
+
+</div>
+
+</body>
+</html>
