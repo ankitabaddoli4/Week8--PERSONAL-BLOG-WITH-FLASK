@@ -1,0 +1,3 @@
+This directory contains database migration scripts.
+Generated using Flask-Migrate and Alembic.
+Do not modify files manually.
